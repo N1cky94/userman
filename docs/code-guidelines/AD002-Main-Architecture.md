@@ -3,6 +3,7 @@
 | Date       | Status   | Deciders       |
 |------------|----------|----------------|
 | 07/02/2024 | accepted | - Nick Bauters |
+| 07/02/2024 | Updated  | - Nick Bauters |
 
 ## Context
 
@@ -16,9 +17,10 @@ This so we can easily factor out these services when this is needed.
 This will create a simple tree:
 - **verenig** - Main monolith folder
    - **api** - The API layer. This should house the controllers and output DTOs
-   - **front** - The front end layer. This should house the front end code
+   - **views** - The front end layer. This should house the front end code
    - **core** - The core layer. This should house the business logic and the domain
-      - **services** - For every component there will be a seperation as if they are microservices
+      - **services** - For every component there will be a separation as if they are microservices
+   - **security** - The security layer. This should house the security logic and the security domain
 
 ## Core
 
