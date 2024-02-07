@@ -19,6 +19,7 @@ This will create a simple tree:
    - **front** - The front end layer. This should house the front end code
    - **core** - The core layer. This should house the business logic and the domain
       - **services** - For every component there will be a seperation as if they are microservices
+   - **security** - The security layer. This should house the security logic and the security domain
 
 ## Core
 
