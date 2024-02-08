@@ -19,5 +19,5 @@ spring:
 
 
 vaadin:
-  whitelisted-packages: com.vaadin,org.vaadin,dev.hilla,be.archilios.homeassist
+  whitelisted-packages: com.vaadin,org.vaadin,dev.hilla,be.archilios.usermanagement
   launch-browser: true
