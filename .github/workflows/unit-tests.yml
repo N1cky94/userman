@@ -2,9 +2,9 @@ name: Unit tests with Maven
 
 on:
   push:
-    branches: [ "main","prep","demo" ]
+    branches: [ "main","prep","demo*" ]
   pull_request:
-    branches: [ "main","prep","demo" ]
+    branches: [ "main","prep","demo*" ]
 
 jobs:
   test:
