@@ -7,9 +7,11 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("User Management")
 @Route(value = "admin/users", layout = MainLayout.class)
+//@RolesAllowed("ROLE_ADMIN")
 @AnonymousAllowed
 public class UserManagementView extends VerticalLayout {
     private final UserUseCases userService;
