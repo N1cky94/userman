@@ -20,6 +20,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.flow.theme.lumo.LumoIcon;
 import jakarta.annotation.security.RolesAllowed;
 
 import java.util.List;
@@ -67,6 +68,22 @@ public class UserManagementView extends VerticalLayout {
                     return activeAccount;
                 }
         ).setHeader("Active Account").setFlexGrow(0);
+        usersGrid.addComponentColumn(
+                user -> {
+                    Button editButton = new Button(LumoIcon.EDIT.create());
+                    editButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+                    editButton.addClickListener(
+                            event -> {
+                                Notification dialog = new Notification("Not implemented yet", 3000);
+                                dialog.setPosition(Notification.Position.MIDDLE);
+                                dialog.open();
+                            }
+                    );
+                    editButton.setWidth(50, Unit.PIXELS);
+                    return editButton;
+                }
+        ).setFlexGrow(0);
+        
         
         usersGrid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
         usersGrid.setSelectionMode(Grid.SelectionMode.MULTI);
