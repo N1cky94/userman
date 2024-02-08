@@ -29,8 +29,7 @@ public class UserManagementView extends VerticalLayout {
     public UserManagementView(UserUseCases userService) {
         this.userService = userService;
         
-        List<UserInfo> users = userService.fetchAllUsers();
-        this.usersDataView = usersGrid.setItems(users);
+        update();
         
         configureUsersGrid();
         
@@ -41,6 +40,11 @@ public class UserManagementView extends VerticalLayout {
             usersGrid
         );
         
+    }
+    
+    private void update() {
+        List<UserInfo> users = userService.fetchAllUsers();
+        this.usersDataView = usersGrid.setItems(users);
     }
     
     private void configureUsersGrid() {
