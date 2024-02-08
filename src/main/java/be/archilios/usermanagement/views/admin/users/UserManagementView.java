@@ -10,8 +10,12 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
+import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.menubar.MenuBar;
+import com.vaadin.flow.component.menubar.MenuBarVariant;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -81,6 +85,23 @@ public class UserManagementView extends VerticalLayout {
                     );
                     editButton.setWidth(50, Unit.PIXELS);
                     return editButton;
+                }
+        ).setFlexGrow(0);
+        usersGrid.addComponentColumn(
+                user -> {
+                    MenuBar userOptionsMenu = new MenuBar();
+                    userOptionsMenu.addThemeVariants(MenuBarVariant.LUMO_TERTIARY);
+                    
+                    userOptionsMenu.addItem(new H4("Account Management")).setEnabled(false);
+                    userOptionsMenu.addItem("Edit user").setEnabled(false);
+                    userOptionsMenu.addItem("Activate/Deactivate").setEnabled(false);
+                    userOptionsMenu.addItem("Delete user").setEnabled(false);
+                    userOptionsMenu.addItem("Reset password").setEnabled(false);
+                    userOptionsMenu.addItem(new Hr()).setEnabled(false);
+                    userOptionsMenu.addItem(new H4("Messages")).setEnabled(false);
+                    userOptionsMenu.addItem("Send message").setEnabled(false);
+                    
+                    return userOptionsMenu;
                 }
         ).setFlexGrow(0);
         
