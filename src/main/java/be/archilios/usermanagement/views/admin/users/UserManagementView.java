@@ -3,12 +3,17 @@ package be.archilios.usermanagement.views.admin.users;
 import be.archilios.usermanagement.core.users.UserInfo;
 import be.archilios.usermanagement.core.users.UserUseCases;
 import be.archilios.usermanagement.views.MainLayout;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -30,13 +35,12 @@ public class UserManagementView extends VerticalLayout {
         this.userService = userService;
         
         update();
-        
         configureUsersGrid();
-        
         setSizeFull();
         
         add(
             new H1("User Management View"),
+            createSearchBar(),
             usersGrid
         );
         
@@ -62,5 +66,34 @@ public class UserManagementView extends VerticalLayout {
         
         usersGrid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
         usersGrid.setSelectionMode(Grid.SelectionMode.MULTI);
+    }
+    
+    private HorizontalLayout createSearchBar() {
+        HorizontalLayout result = new HorizontalLayout();
+        result.setWidthFull();
+        result.setAlignItems(Alignment.BASELINE);
+        
+        TextField searchField = new TextField();
+        searchField.setPlaceholder("Search");
+        searchField.setPrefixComponent(VaadinIcon.SEARCH.create());
+        searchField.setClearButtonVisible(true);
+        searchField.setWidth(50, Unit.PERCENTAGE);
+        searchField.setValueChangeMode(ValueChangeMode.ON_CHANGE);
+        searchField.addValueChangeListener(e -> usersDataView.refreshAll());
+        
+        usersDataView.addFilter(
+                user -> {
+                    String searchTerm = searchField.getValue().trim().toLowerCase();
+                    
+                    boolean firstNameMatch = user.firstName().toLowerCase().contains(searchTerm);
+                    boolean lastNameMatch = user.lastName().toLowerCase().contains(searchTerm);
+                    boolean emailMatch = user.email().toLowerCase().contains(searchTerm);
+                    
+                    return firstNameMatch || lastNameMatch || emailMatch;
+                }
+        );
+        
+        result.add(searchField);
+        return result;
     }
 }
