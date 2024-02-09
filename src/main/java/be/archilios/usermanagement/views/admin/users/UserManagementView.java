@@ -31,8 +31,8 @@ import java.util.List;
 
 @PageTitle("User Management")
 @Route(value = "admin/users", layout = MainLayout.class)
-//@RolesAllowed("ROLE_ADMIN")
-@AnonymousAllowed
+@RolesAllowed("ROLE_ADMIN")
+//@AnonymousAllowed
 public class UserManagementView extends VerticalLayout {
     private final UserUseCases userService;
     
