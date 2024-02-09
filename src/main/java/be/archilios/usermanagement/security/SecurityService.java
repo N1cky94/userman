@@ -22,6 +22,13 @@ public class SecurityService {
         return null;
     }
     
+    public boolean isAuthenticatedUserAdmin() {
+        UserDetails user = getAuthenticatedUser();
+        return user != null && user.getAuthorities().stream().anyMatch(
+                a -> a.getAuthority().equals("ROLE_ADMIN")
+        );
+    }
+    
     public void logout() {
         UI.getCurrent().getPage().setLocation(LOGOUT_SUCCES_URL);
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
