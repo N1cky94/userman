@@ -24,7 +24,7 @@ class UserDetailsFromDatabaseServiceTest {
     @DisplayName("Given a valid username, when loadUserByUsername is called, then return UserDetails with correct username")
     void loadUserByUsername_ValidUsername_ReturnsUserDetails() {
         // Arrange
-        SecurityUser securityUser = UserMother.get().build();
+        SecurityUser securityUser = SecurityUserMother.get().build();
         String username = securityUser.getEmail();
         when(securityUserRepository.findByEmail(username)).thenReturn(Optional.of(securityUser));
         userDetailsFromDatabaseService = new UserDetailsFromDatabaseService(securityUserRepository);

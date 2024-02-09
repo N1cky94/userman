@@ -10,7 +10,7 @@ class UserDetailsFromSecurityUserTest {
     @Test
     @DisplayName("UserDetails maps correctly from a SecurityUser")
     void testUserDetailsFromSecurityUser() {
-        SecurityUser user = UserMother.get().build();
+        SecurityUser user = SecurityUserMother.get().build();
         
         UserDetailsFromSecurityUser userDetails = new UserDetailsFromSecurityUser(user);
         

@@ -1,7 +1,7 @@
 package be.archilios.usermanagement.views;
 
+import be.archilios.usermanagement.views.admin.users.UserManagementView;
 import be.archilios.usermanagement.views.dashboard.DashboardView;
-import be.archilios.usermanagement.views.users.UsersView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Footer;
@@ -52,7 +52,7 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, LineAwesomeIcon.HOME_SOLID.create()));
-        nav.addItem(new SideNavItem("Users", UsersView.class, LineAwesomeIcon.USERS_COG_SOLID.create()));
+        nav.addItem(new SideNavItem("Users", UserManagementView.class, LineAwesomeIcon.USERS_COG_SOLID.create()));
 
         return nav;
     }
