@@ -69,15 +69,31 @@ public class MainLayout extends AppLayout {
         appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
         Header header = new Header(appName);
 
-        Scroller scroller = new Scroller(createNavigation());
+        Scroller userScroller = new Scroller(createNavigation());
 
-        addToDrawer(header, scroller, createFooter());
+        addToDrawer(header, userScroller);
+        
+        if (security.isAuthenticatedUserAdmin()) {
+            Scroller adminScroller = new Scroller(createAdminNavigation());
+            addToDrawer(adminScroller);
+        }
+        
+        addToDrawer(createFooter());
     }
 
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, LineAwesomeIcon.HOME_SOLID.create()));
+
+        return nav;
+    }
+    
+    private SideNav createAdminNavigation() {
+        SideNav nav = new SideNav();
+        nav.setLabel("Admin");
+        nav.setCollapsible(true);
+        
         nav.addItem(new SideNavItem("Users", UserManagementView.class, LineAwesomeIcon.USERS_COG_SOLID.create()));
 
         return nav;
