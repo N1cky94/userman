@@ -27,7 +27,7 @@ public class UserDatabaseService implements UserUseCases {
                 newUser.activate()
         );
         
-        userRepository.save(user);
+        user = userRepository.save(user);
         return UserInfo.from(user);
     }
 }
