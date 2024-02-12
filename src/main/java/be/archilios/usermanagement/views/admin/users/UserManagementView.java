@@ -32,8 +32,8 @@ import java.util.List;
 
 @PageTitle("User Management")
 @Route(value = "admin/users", layout = MainLayout.class)
-//@RolesAllowed("ROLE_ADMIN")
-@AnonymousAllowed
+@RolesAllowed("ROLE_ADMIN")
+//@AnonymousAllowed
 public class UserManagementView extends VerticalLayout {
     private final UserUseCases userService;
     
@@ -159,7 +159,7 @@ public class UserManagementView extends VerticalLayout {
         result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         result.addClickListener(
                 event -> {
-                    AppNotification dialog = new AppNotification("Not implemented yet");
+                    NewUserDialog dialog = new NewUserDialog(userService);
                     dialog.open();
                 }
         );
