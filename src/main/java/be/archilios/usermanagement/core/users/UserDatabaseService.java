@@ -17,4 +17,9 @@ public class UserDatabaseService implements UserUseCases {
                 .map(UserInfo::from)
                 .toList();
     }
+    
+    public UserInfo createNewUser(CreateNewUserCommand newUser) {
+        
+        return null;
+    }
 }
