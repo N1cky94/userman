@@ -1,16 +1,17 @@
 package be.archilios.usermanagement.views.admin.users;
 
+import be.archilios.usermanagement.core.users.CreateNewUserCommand;
 import be.archilios.usermanagement.core.users.UserUseCases;
 import be.archilios.usermanagement.views.util.AppNotification;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
+import org.springframework.dao.DataIntegrityViolationException;
 
 public class NewUserDialog extends Dialog {
     private final UserUseCases userService;
@@ -76,8 +77,29 @@ public class NewUserDialog extends Dialog {
         result.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         result.addClickListener(
                 event -> {
-                    Notification dialog = new AppNotification("Not implemented yet");
-                    dialog.open();
+                    if (
+                            firstnameField.isEmpty() ||
+                            lastnameField.isEmpty() ||
+                            emailField.isEmpty()
+                    ) {
+                        AppNotification.show("Please fill in all required fields");
+                    } else {
+                        CreateNewUserCommand newUserCommand = new CreateNewUserCommand(
+                                firstnameField.getValue(),
+                                lastnameField.getValue(),
+                                emailField.getValue(),
+                                isAdminField.getValue()
+                        );
+                        try {
+                            userService.createNewUser(newUserCommand);
+                            
+                            this.close();
+                        } catch(DataIntegrityViolationException dive) {
+                            AppNotification.show("Something went wrong while saving!\n" +
+                                    "Check if the email address is not already in use.");
+                        
+                        }
+                    }
                 }
         );
         return result;
