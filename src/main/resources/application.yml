@@ -16,6 +16,17 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: none
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USER}
+    password: ${MAIL_PSW}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 
 vaadin:
