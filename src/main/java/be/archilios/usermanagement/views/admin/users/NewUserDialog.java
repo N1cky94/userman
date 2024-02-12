@@ -3,6 +3,7 @@ package be.archilios.usermanagement.views.admin.users;
 import be.archilios.usermanagement.core.users.CreateNewUserCommand;
 import be.archilios.usermanagement.core.users.UserUseCases;
 import be.archilios.usermanagement.views.util.AppNotification;
+import be.archilios.usermanagement.views.util.Updatable;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -15,6 +16,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 public class NewUserDialog extends Dialog {
     private final UserUseCases userService;
+    private final Updatable updatableParent;
     
     private final Button saveButton;
     private final Button cancelButton;
@@ -24,8 +26,9 @@ public class NewUserDialog extends Dialog {
     private final EmailField emailField;
     private final Checkbox isAdminField;
     
-    public NewUserDialog(UserUseCases userService) {
+    public NewUserDialog(UserUseCases userService, Updatable updatableParent) {
         this.userService = userService;
+        this.updatableParent = updatableParent;
         
         this.firstnameField = new TextField("First Name");
         this.lastnameField = new TextField("Last Name");
@@ -92,6 +95,7 @@ public class NewUserDialog extends Dialog {
                         );
                         try {
                             userService.createNewUser(newUserCommand);
+                            updatableParent.update();
                             
                             this.close();
                         } catch(DataIntegrityViolationException dive) {

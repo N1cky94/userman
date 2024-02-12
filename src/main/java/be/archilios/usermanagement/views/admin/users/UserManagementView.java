@@ -4,6 +4,7 @@ import be.archilios.usermanagement.core.users.UserInfo;
 import be.archilios.usermanagement.core.users.UserUseCases;
 import be.archilios.usermanagement.views.MainLayout;
 import be.archilios.usermanagement.views.util.AppNotification;
+import be.archilios.usermanagement.views.util.Updatable;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -33,7 +34,7 @@ import java.util.List;
 @PageTitle("User Management")
 @Route(value = "admin/users", layout = MainLayout.class)
 @RolesAllowed("ROLE_ADMIN")
-public class UserManagementView extends VerticalLayout {
+public class UserManagementView extends VerticalLayout implements Updatable {
     private final UserUseCases userService;
     
     private final Grid<UserInfo> usersGrid = new Grid<>(UserInfo.class);
@@ -55,7 +56,7 @@ public class UserManagementView extends VerticalLayout {
         
     }
     
-    private void update() {
+    public void update() {
         List<UserInfo> users = userService.fetchAllUsers();
         this.usersDataView = usersGrid.setItems(users);
     }
@@ -158,7 +159,7 @@ public class UserManagementView extends VerticalLayout {
         result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         result.addClickListener(
                 event -> {
-                    NewUserDialog dialog = new NewUserDialog(userService);
+                    NewUserDialog dialog = new NewUserDialog(userService, this);
                     dialog.open();
                 }
         );
