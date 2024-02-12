@@ -3,6 +3,7 @@ package be.archilios.usermanagement.views.admin.users;
 import be.archilios.usermanagement.core.users.UserInfo;
 import be.archilios.usermanagement.core.users.UserUseCases;
 import be.archilios.usermanagement.views.MainLayout;
+import be.archilios.usermanagement.views.util.AppNotification;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -31,8 +32,8 @@ import java.util.List;
 
 @PageTitle("User Management")
 @Route(value = "admin/users", layout = MainLayout.class)
-@RolesAllowed("ROLE_ADMIN")
-//@AnonymousAllowed
+//@RolesAllowed("ROLE_ADMIN")
+@AnonymousAllowed
 public class UserManagementView extends VerticalLayout {
     private final UserUseCases userService;
     
@@ -158,12 +159,11 @@ public class UserManagementView extends VerticalLayout {
         result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         result.addClickListener(
                 event -> {
-                    Notification dialog = new Notification("Not implemented yet", 3000);
+                    AppNotification dialog = new AppNotification("Not implemented yet");
                     dialog.open();
                 }
         );
         
-        result.setEnabled(false);
         return result;
     }
     
@@ -172,7 +172,7 @@ public class UserManagementView extends VerticalLayout {
         result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         result.addClickListener(
                 event -> {
-                    Notification dialog = new Notification("Not implemented yet", 3000);
+                    AppNotification dialog = new AppNotification("Not implemented yet");
                     dialog.open();
                 }
         );
@@ -186,7 +186,7 @@ public class UserManagementView extends VerticalLayout {
         result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         result.addClickListener(
                 event -> {
-                    Notification dialog = new Notification("Not implemented yet", 3000);
+                    AppNotification dialog = new AppNotification("Not implemented yet");
                     dialog.open();
                 }
         );
