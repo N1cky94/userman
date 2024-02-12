@@ -8,11 +8,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter(value = lombok.AccessLevel.PRIVATE)
+@Setter(value = lombok.AccessLevel.PACKAGE)
 @ToString
 public class SecurityUser {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.PRIVATE)
     private Long id;
     @Column(name = "email")
     private String email;
