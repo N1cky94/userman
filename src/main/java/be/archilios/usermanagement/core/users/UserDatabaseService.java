@@ -19,7 +19,15 @@ public class UserDatabaseService implements UserUseCases {
     }
     
     public UserInfo createNewUser(CreateNewUserCommand newUser) {
+        User user = new User(
+                null,
+                newUser.email(),
+                newUser.firstname(),
+                newUser.lastname(),
+                newUser.activate()
+        );
         
-        return null;
+        userRepository.save(user);
+        return UserInfo.from(user);
     }
 }
