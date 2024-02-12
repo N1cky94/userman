@@ -85,9 +85,9 @@ public class NewUserDialog extends Dialog {
                         AppNotification.show("Please fill in all required fields");
                     } else {
                         CreateNewUserCommand newUserCommand = new CreateNewUserCommand(
+                                emailField.getValue(),
                                 firstnameField.getValue(),
                                 lastnameField.getValue(),
-                                emailField.getValue(),
                                 isAdminField.getValue()
                         );
                         try {
