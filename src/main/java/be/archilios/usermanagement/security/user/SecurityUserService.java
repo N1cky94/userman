@@ -13,11 +13,16 @@ public class SecurityUserService implements SecurityUserUseCases {
     @Override
     public void activateUser(ActivateSecurityUserCommand command) {
         SecurityUser user = securityUserRepository.findByEmail(command.email()).orElseThrow();
-        user.setActiveAccount(true);
-        user.setRole(command.role());
-        user.setPassword(encryptPassword(command.password()));
         
-        securityUserRepository.save(user);
+        if (user.isActiveAccount()) {
+            throw new IllegalStateException("User is already activated");
+        } else {
+            user.setActiveAccount(true);
+            user.setRole(command.role());
+            user.setPassword(encryptPassword(command.password()));
+            
+            securityUserRepository.save(user);
+        }
     }
     
     private String encryptPassword(String password) {

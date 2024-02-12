@@ -1,5 +1,6 @@
 package be.archilios.usermanagement.core.users;
 
+import be.archilios.usermanagement.security.user.SecurityUserUseCases;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,12 +18,14 @@ import static org.mockito.Mockito.when;
 class FetchUsersFromDatabaseUseCaseTest {
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private SecurityUserUseCases securityUserService;
     
     private UserDatabaseService userDatabaseService;
     
     @BeforeEach
     void setUp() {
-        userDatabaseService = new UserDatabaseService(userRepository);
+        userDatabaseService = new UserDatabaseService(userRepository, securityUserService);
     }
     
     @Test
