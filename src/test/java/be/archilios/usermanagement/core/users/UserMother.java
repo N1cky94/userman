@@ -18,9 +18,22 @@ public class UserMother {
         return new User(id, email, firstName, lastName, activeAccount);
     }
     
+    public CreateNewUserCommand buildAsNewUserCommand() {
+        return new CreateNewUserCommand(email, firstName, lastName, activeAccount);
+    }
+    
+    public UserInfo buildAsUserInfo() {
+        return new UserInfo(id, email, firstName, lastName, activeAccount);
+    }
+    
     public List<User> buildList() {
         List<User> users = new ArrayList<>();
         users.add(build());
         return users;
+    }
+    
+    public UserMother asDeactivated() {
+        this.activeAccount = false;
+        return this;
     }
 }

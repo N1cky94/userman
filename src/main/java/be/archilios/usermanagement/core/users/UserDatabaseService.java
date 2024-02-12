@@ -17,4 +17,17 @@ public class UserDatabaseService implements UserUseCases {
                 .map(UserInfo::from)
                 .toList();
     }
+    
+    public UserInfo createNewUser(CreateNewUserCommand newUser) {
+        User user = new User(
+                null,
+                newUser.email(),
+                newUser.firstname(),
+                newUser.lastname(),
+                newUser.activate()
+        );
+        
+        user = userRepository.save(user);
+        return UserInfo.from(user);
+    }
 }
