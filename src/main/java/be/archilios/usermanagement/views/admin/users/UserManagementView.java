@@ -1,7 +1,9 @@
 package be.archilios.usermanagement.views.admin.users;
 
+import be.archilios.usermanagement.core.users.ActivateUserCommand;
 import be.archilios.usermanagement.core.users.UserInfo;
 import be.archilios.usermanagement.core.users.UserUseCases;
+import be.archilios.usermanagement.security.user.ApplicationRole;
 import be.archilios.usermanagement.views.MainLayout;
 import be.archilios.usermanagement.views.util.AppNotification;
 import be.archilios.usermanagement.views.util.Updatable;
@@ -95,7 +97,21 @@ public class UserManagementView extends VerticalLayout implements Updatable {
                     
                     userOptionsMenu.addItem(new H4("Account Management")).setEnabled(false);
                     userOptionsMenu.addItem("Edit user").setEnabled(false);
-                    userOptionsMenu.addItem("Activate/Deactivate").setEnabled(false);
+                    userOptionsMenu.addItem(user.active()?"Deactivate":"Activate").addClickListener(
+                            event -> {
+                                if (!user.active()) {
+                                    ActivateUserCommand activateUser = new ActivateUserCommand(user.email(), ApplicationRole.USER);
+                                    userService.activateUserAccount(activateUser);
+                                    
+                                    AppNotification dialog = new AppNotification("User activated");
+                                    dialog.open();
+                                } else {
+                                    AppNotification dialog = new AppNotification("Not implemented yet");
+                                    dialog.open();
+                                }
+                            }
+                    
+                    );
                     userOptionsMenu.addItem("Delete user").setEnabled(false);
                     userOptionsMenu.addItem("Reset password").setEnabled(false);
                     userOptionsMenu.addItem(new Hr()).setEnabled(false);
