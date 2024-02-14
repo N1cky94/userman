@@ -23,3 +23,6 @@ webpack.generated.js
 ## project specific
 .env
 *.env
+
+# Vaadin
+vite.*
