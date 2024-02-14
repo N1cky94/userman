@@ -1,7 +1,6 @@
 package be.archilios.usermanagement.security;
 
 import be.archilios.usermanagement.views.auth.LoginView;
-import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

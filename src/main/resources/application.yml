@@ -9,16 +9,13 @@ spring:
     check-template-location: false
   datasource:
     url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PSW}
     driver-class-name: org.postgresql.Driver
   jpa:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: none
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 vaadin:
   whitelisted-packages: com.vaadin,org.vaadin,dev.hilla,be.archilios.usermanagement
