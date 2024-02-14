@@ -13,22 +13,19 @@ import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.annotation.security.RolesAllowed;
 
 import java.util.List;
 
 @PageTitle("Admin - User Management")
 @Route(value = "admin/users", layout = MainLayout.class)
-//@RolesAllowed({"ROLE_ADMIN"})
-@AnonymousAllowed
+@RolesAllowed({"ROLE_ADMIN"})
 public class UserManagementView extends VerticalLayout implements Updatable {
     private final UserUseCases userService;
     

@@ -17,11 +17,13 @@ import static org.mockito.Mockito.when;
 public class FetchUsersFromDatabaseUseCaseTest {
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private UserMailMessagingService mailService;
     private UserDatabaseService userDatabaseService;
     
     @BeforeEach
     void setUp() {
-        userDatabaseService = new UserDatabaseService(userRepository);
+        userDatabaseService = new UserDatabaseService(userRepository, mailService);
     }
     
     @Test

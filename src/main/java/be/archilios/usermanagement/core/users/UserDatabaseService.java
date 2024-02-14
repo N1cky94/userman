@@ -10,6 +10,7 @@ import java.util.List;
 public
 class UserDatabaseService implements UserUseCases {
     private final UserRepository userRepository;
+    private final UserMailMessagingService mailService;
     
     @Override
     public List<UserInfo> fetchAllUsers() {
@@ -31,6 +32,13 @@ class UserDatabaseService implements UserUseCases {
         );
         
         user = userRepository.save(user);
-        return UserInfo.from(user);
+        UserInfo userInfo = UserInfo.from(user);
+        
+        if (newUser.activate()) {
+            // todo get email and password
+            mailService.sendUserActivationMessage(userInfo);
+        }
+        
+        return userInfo;
     }
 }
