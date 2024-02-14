@@ -1,5 +1,5 @@
 package be.archilios.usermanagement.security.user;
 
 public enum ApplicationRole {
-    ADMIN, MEMBER;
+    ADMIN, USER;
 }
