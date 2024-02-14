@@ -1,21 +1,19 @@
 package be.archilios.usermanagement.views.admin.users;
 
-import be.archilios.usermanagement.core.users.UserDatabaseService;
 import be.archilios.usermanagement.core.users.UserInfo;
 import be.archilios.usermanagement.core.users.UserUseCases;
 import be.archilios.usermanagement.views.MainLayout;
 import be.archilios.usermanagement.views.util.Updatable;
 import com.vaadin.flow.component.Unit;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H4;
-import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.menubar.MenuBar;
-import com.vaadin.flow.component.menubar.MenuBarVariant;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -40,13 +38,15 @@ public class UserManagementView extends VerticalLayout implements Updatable {
     public UserManagementView(UserUseCases userService) {
         this.userService = userService;
         
-        configureUsersGrid();
         update();
+        configureUsersGrid();
+        setSizeFull();
         
         add(
                 new H1("User Management View"),
                 createSearchBar(),
-                usersGrid
+                usersGrid,
+                createListActionsHeader()
         );
     }
     
@@ -103,6 +103,29 @@ public class UserManagementView extends VerticalLayout implements Updatable {
         
         result.add(
                 searchField
+        );
+        
+        return result;
+    }
+    
+    private HorizontalLayout createListActionsHeader() {
+        HorizontalLayout result = new HorizontalLayout();
+        result.setWidthFull();
+        result.setJustifyContentMode(JustifyContentMode.START);
+        
+        result.add(createAddNewUserButton());
+        
+        return result;
+    }
+    
+    private Button createAddNewUserButton() {
+        Button result = new Button("New User", VaadinIcon.PLUS_CIRCLE.create());
+        result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        result.addClickListener(
+                event -> {
+                    Notification dialog = new Notification("Not implemented yet!", 3000, Notification.Position.MIDDLE);
+                    dialog.open();
+                }
         );
         
         return result;
