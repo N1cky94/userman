@@ -7,6 +7,15 @@ logging:
 spring:
   mustache:
     check-template-location: false
+    datasource:
+      url: ${DATABASE_URL}
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+    jpa:
+      defer-datasource-initialization: true
+      hibernate:
+        ddl-auto: none
 
 vaadin:
   whitelisted-packages: com.vaadin,org.vaadin,dev.hilla,be.archilios.usermanagement
