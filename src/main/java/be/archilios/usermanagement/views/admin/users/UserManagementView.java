@@ -123,7 +123,7 @@ public class UserManagementView extends VerticalLayout implements Updatable {
         result.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         result.addClickListener(
                 event -> {
-                    Notification dialog = new Notification("Not implemented yet!", 3000, Notification.Position.MIDDLE);
+                    NewUserDialog dialog = new NewUserDialog(userService, this);
                     dialog.open();
                 }
         );
