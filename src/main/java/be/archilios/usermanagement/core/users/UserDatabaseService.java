@@ -46,6 +46,8 @@ public class UserDatabaseService implements UserUseCases {
         
         securityUserService.activateUser(securityUserCommand);
         
+        //todo: Email the just activate user with the password
+        //   Also add this logic conditionally to the createNewUser method
         
     }
     
