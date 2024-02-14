@@ -7,7 +7,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserDatabaseService implements UserUseCases {
+public
+class UserDatabaseService implements UserUseCases {
     private final UserRepository userRepository;
     
     @Override
@@ -17,5 +18,19 @@ public class UserDatabaseService implements UserUseCases {
                 .stream()
                 .map(UserInfo::from)
                 .toList();
+    }
+    
+    @Override
+    public UserInfo createNewUser(CreateNewUserCommand newUser) {
+        User user = new User(
+                null,
+                newUser.email(),
+                newUser.firstName(),
+                newUser.lastName(),
+                newUser.activate()
+        );
+        
+        user = userRepository.save(user);
+        return UserInfo.from(user);
     }
 }
