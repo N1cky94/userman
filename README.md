@@ -49,11 +49,15 @@ DATABASE_NAME=UserManDB
 DATABASE_USER=user
 DATABASE_PSW=kdOels9ejd82J
 DATABASE_URL=jdbc:postgresql://localhost:5432/UserManDB
+MAIL_HOST=smtp.yourmaildomain.com
+MAIL_PORT=587
+MAIL_USER=no-reply@yourdomain.com
+MAIL_PSW=teST123[]TEst
 ```
 
 You can also copy-paste the following in the run configuration:
 ```txt
-DATABASE_NAME=UserManDB;DATABASE_USER=user;DATABASE_PSW=kdOels9ejd82J;DATABASE_URL=jdbc:postgresql://localhost:5432/UserManDB
+DATABASE_NAME=UserManDB;DATABASE_USER=user;DATABASE_PSW=kdOels9ejd82J;DATABASE_URL=jdbc:postgresql://localhost:5432/UserManDB;MAIL_HOST=smtp.yourmaildomain.com;MAIL_PORT=587;MAIL_USER=no-reply@yourdomain.com;MAIL_PSW=teST123[]TEst
 ```
 
 ### PostgreSQL
